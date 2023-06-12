@@ -1,16 +1,16 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Cabin', sans-serif;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: white;
 }
 
-.app{
-    background-color: rgb(241, 241, 241);
+.app {
+    background-color: rgb(245, 245, 245);
     width: 90%;
     max-width: 600px;
     margin: 100px auto 0;
@@ -18,7 +18,7 @@ body{
     padding: 30px;
 }
 
-.app h1{
+.app h1 {
     font-size: 25px;
     color: black;
     font-weight: 600;
@@ -26,25 +26,47 @@ body{
     padding-bottom: 30px;
 }
 
-.quiz{
+.quiz {
     padding: 20px 0;
 }
 
-.quiz h2{
-    font-size: 18px;
+.quiz h2 {
+    font-size: 30px;
     color: black;
     font-weight: 600;
 }
 
-.btn{
-    background-color: white;
+.btns button {
+    font-size: 100px;
+    border: none;
     color: black;
-    font-weight: 500;
-    width: 100%;
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px 0;
-    text-align: left;
-    border-radius: 4px;
+    font-weight: 1800;
+    width: 25%;
+    height: 25%;
+    margin: 10px 10px;
+    text-align: center;
     cursor: pointer;
+    opacity: 0.75;
+    transition: all 0.3s;
+}
+
+.btns button:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.btn1 {
+    background-color: rgb(255, 72, 72);
+}
+
+.btn2 {
+    background-color: rgb(72, 197, 255);
+}
+
+.btn3 {
+    background-color: rgb(105, 255, 118);
+}
+
+.btn4 {
+    background-color: yellow;
 }
