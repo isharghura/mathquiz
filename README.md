@@ -1,1 +1,1 @@
-# Math quiz to test your math skillscu
+# Math quiz to test your math skills
