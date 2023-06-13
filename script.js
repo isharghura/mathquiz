@@ -11,9 +11,9 @@ const questions = [
     {
         question: "4+6",
         answers: [
-            { text: "10", correct: true, id:"btn1" },
+            { text: "18", correct: false, id:"btn1" },
             { text: "212", correct: false, id: "btn2"},
-            { text: "121", correct: false, id: "btn3"},
+            { text: "10", correct: true, id: "btn3"},
             { text: "135", correct: false, id: "btn4"},
         ]
     }
@@ -44,6 +44,10 @@ function showQuestion() {
         button.classList.add("btn");
         button.id = answer.id; // Assign custom ID or generate default ID
         answerBtns.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct=answer.correct;
+        }
+        button.addEventListener("click", selectAns);
     })
 }
 
@@ -51,6 +55,17 @@ function resetState() {
     nextBtn.style.display="none";
     while (answerBtns.firstChild) {
         answerBtns.removeChild(answerBtns.firstChild);
+    }
+}
+
+function selectAns(e){
+    const selectedBtn=e.target;
+    const isCorrect=selectedBtn.dataset.correct==="true";
+    if(isCorrect){
+        selectedBtn.classList.add("correct");
+    }
+    else{
+        selectedBtn.classList.add("incorrect");
     }
 }
 
