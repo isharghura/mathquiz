@@ -68,11 +68,37 @@ function changeBtnBg() {
         }
         else {
             button.classList.add("correct");
+            score++;
         }
         button.disabled=true;
     });
     nextBtn.style.display="block";
 }
 
+function finalScore(){
+    resetState();
+    questionElement.innerHTML=`Scored ${score}/${questions.length}!`;
+    nextBtn.innerHTML="Play Again!";
+    nextBtn.style.display="block";
+}
+
+function handleNextBtn(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex<questions.length){
+        showQuestion();
+    }
+    else{
+        finalScore();
+    }
+}
+
+nextBtn.addEventListener("click", ()=>{
+    if(currentQuestionIndex < questions.length){
+        handleNextBtn();
+    }
+    else{
+        startQuiz();
+    }
+})
 
 startQuiz();

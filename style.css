@@ -170,9 +170,9 @@ body {
 }
 
 .correct{
-    background: rgb(0, 255, 0) !important;
+    background-color: rgb(105, 255, 118) !important;
 }
 
 .incorrect{
-    background: red !important;
+    background-color: rgb(255, 72, 72) !important;
 }
