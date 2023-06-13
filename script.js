@@ -25,7 +25,7 @@ function generateQuestions(numQuestions) {
 
         const answers = Array.from(answerSet);
         const correctIndex = Math.floor(Math.random() * 4);
-        const shuffledAnswers = shuffleArrayWithIndex(answers, correctIndex); 
+        const shuffledAnswers = shuffleArrayWithIndex(answers, correctIndex);
 
         const question = {
             question: `${num1} + ${num2}`,
@@ -42,15 +42,15 @@ function generateQuestions(numQuestions) {
     return qs;
 }
 
-function shuffleArrayWithIndex(array, correctIndex) {
+function shuffleArrayWithIndex(array) {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
     }
     const correctAnswer = shuffledArray[0];
-    shuffledArray[0] = shuffledArray[correctIndex];
-    shuffledArray[correctIndex] = correctAnswer;
+    shuffledArray[0] = array[0];
+    shuffledArray[array.indexOf(correctAnswer)] = correctAnswer;
     return shuffledArray;
 }
 
@@ -77,13 +77,12 @@ function startQuiz() {
     nextBtn.innerHTML = "Continue";
     showQuestion();
 }
-
 function showQuestion() {
     resetState();
     const currentQuestion = questions[currentQuestionIndex];
     questionElement.innerHTML = currentQuestion.question;
 
-    const shuffledAnswers = shuffleArray(currentQuestion.answers);
+    const shuffledAnswers = shuffleArray([...currentQuestion.answers]);
 
     shuffledAnswers.forEach(answer => {
         const button = document.createElement("button");
@@ -98,7 +97,6 @@ function showQuestion() {
     });
 }
 
-
 function resetState() {
     nextBtn.style.display = "none";
     while (answerBtns.firstChild) {
@@ -106,20 +104,26 @@ function resetState() {
     }
 }
 
-function changeBtnBg() {
+function changeBtnBg(event) {
+    const selectedButton = event.target;
+    const isButtonCorrect = selectedButton.dataset.correct === "true";
+
     const answerButtons = document.querySelectorAll(".btn");
     answerButtons.forEach(button => {
-        const isButtonCorrect = button.dataset.correct === "true";
-        button.classList.remove("correct", "incorrect");
-        if (isButtonCorrect) {
+        button.disabled = true;
+
+        if (button.dataset.correct === "true") {
             button.classList.add("correct");
-            score++;
-        }
-        else {
+        } else {
             button.classList.add("incorrect");
         }
-        button.disabled = true;
+
+        if (button === selectedButton && isButtonCorrect) {
+            button.classList.remove("incorrect");
+            score++;
+        }
     });
+
     nextBtn.style.display = "block";
 }
 
