@@ -1,23 +1,52 @@
-const questions = [
-    {
-        question: "6+6",
-        answers: [
-            { text: "12", correct: true, id: "btn1" },
-            { text: "512", correct: false, id: "btn2" },
-            { text: "21", correct: false, id: "btn3" },
-            { text: "15", correct: false, id: "btn4" },
-        ]
-    },
-    {
-        question: "4+6",
-        answers: [
-            { text: "18", correct: false, id: "btn1" },
-            { text: "212", correct: false, id: "btn2" },
-            { text: "10", correct: true, id: "btn3" },
-            { text: "135", correct: false, id: "btn4" },
-        ]
+const numQuestions = 10;
+
+function generateQuestions(numQuestions) {
+    const qs = [];
+  
+    for (let i = 0; i < numQuestions; i++) {
+      let num1, num2, correctAddAnswer;
+      let answerSet = new Set();
+  
+      do {
+        num1 = Math.floor(Math.random() * 10) - Math.floor(Math.random() * 20);
+        num2 = Math.floor(Math.random() * 10) + Math.floor(Math.random() * 20);
+        correctAddAnswer = num1 + num2;
+  
+        answerSet.add(correctAddAnswer);
+  
+        while (answerSet.size < 4) {
+          const incorrectAnswer = correctAddAnswer + Math.floor(Math.random() * 11) - Math.floor(Math.random() * 5);
+          answerSet.add(incorrectAnswer);
+        }
+      } while (answerSet.size !== 4);
+  
+      const answers = Array.from(answerSet);
+  
+      shuffleArray(answers);
+  
+      const question = {
+        question: `${num1} + ${num2}`,
+        answers: answers.map((answer, index) => ({
+          text: `${answer}`,
+          correct: index === 0,
+          id: `btn${index + 1}`
+        }))
+      };
+  
+      qs.push(question);
     }
-]
+  
+    return qs;
+  }
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+const questions = generateQuestions(numQuestions);
 
 const questionElement = document.getElementById("question");
 const answerBtns = document.getElementById("answerBtns");
@@ -42,7 +71,7 @@ function showQuestion() {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
-        button.id = answer.id; // Assign custom ID or generate default ID
+        button.id = answer.id;
         answerBtns.appendChild(button);
         if (answer.correct) {
             button.dataset.correct = answer.correct;
@@ -62,41 +91,41 @@ function changeBtnBg() {
     const answerButtons = document.querySelectorAll(".btn");
     answerButtons.forEach(button => {
         const isButtonCorrect = button.dataset.correct === "true";
-        button.classList.remove("correct", "incorrect"); // Remove existing classes
-        if (!isButtonCorrect) {
-            button.classList.add("incorrect");
-        }
-        else {
+        button.classList.remove("correct", "incorrect");
+        if (isButtonCorrect) {
             button.classList.add("correct");
             score++;
         }
-        button.disabled=true;
+        else {
+            button.classList.add("incorrect");
+        }
+        button.disabled = true;
     });
-    nextBtn.style.display="block";
+    nextBtn.style.display = "block";
 }
 
-function finalScore(){
+function finalScore() {
     resetState();
-    questionElement.innerHTML=`Scored ${score}/${questions.length}!`;
-    nextBtn.innerHTML="Play Again!";
-    nextBtn.style.display="block";
+    questionElement.innerHTML = `Scored ${score}/${questions.length}!`;
+    nextBtn.innerHTML = "Play Again!";
+    nextBtn.style.display = "block";
 }
 
-function handleNextBtn(){
+function handleNextBtn() {
     currentQuestionIndex++;
-    if(currentQuestionIndex<questions.length){
+    if (currentQuestionIndex < questions.length) {
         showQuestion();
     }
-    else{
+    else {
         finalScore();
     }
 }
 
-nextBtn.addEventListener("click", ()=>{
-    if(currentQuestionIndex < questions.length){
+nextBtn.addEventListener("click", () => {
+    if (currentQuestionIndex < questions.length) {
         handleNextBtn();
     }
-    else{
+    else {
         startQuiz();
     }
 })
