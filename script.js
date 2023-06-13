@@ -42,15 +42,11 @@ function generateQuestions(numQuestions) {
     return qs;
 }
 
-function shuffleArrayWithIndex(array) {
-    const shuffledArray = [...array];
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-    }
-    const correctAnswer = shuffledArray[0];
-    shuffledArray[0] = array[0];
-    shuffledArray[array.indexOf(correctAnswer)] = correctAnswer;
+function shuffleArrayWithIndex(array, correctIndex) {
+    const shuffledArray = array.slice();
+    const correctAnswer = shuffledArray[correctIndex];
+    shuffledArray[correctIndex] = shuffledArray[0];
+    shuffledArray[0] = correctAnswer;
     return shuffledArray;
 }
 
@@ -111,6 +107,7 @@ function changeBtnBg(event) {
     const answerButtons = document.querySelectorAll(".btn");
     answerButtons.forEach(button => {
         button.disabled = true;
+        button.classList.remove("correct", "incorrect");
 
         if (button.dataset.correct === "true") {
             button.classList.add("correct");
@@ -119,7 +116,7 @@ function changeBtnBg(event) {
         }
 
         if (button === selectedButton && isButtonCorrect) {
-            button.classList.remove("incorrect");
+            button.classList.add("correct");
             score++;
         }
     });
