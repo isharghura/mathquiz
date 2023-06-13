@@ -1,55 +1,56 @@
 const questions = [
     {
-        question: "Biggest animal in the world?",
+        question: "6+6",
         answers: [
-            { text: "shark", correct: false },
-            { text: "blue whale", correct: true },
-            { text: "shrimp", correct: false },
-            { text: "elephant", correct: false }
+            { text: "12", correct: true, id:"btn1" },
+            { text: "512", correct: false, id: "btn2"},
+            { text: "21", correct: false, id: "btn3"},
+            { text: "15", correct: false, id: "btn4"},
         ]
     },
     {
-        question: "6+6?",
+        question: "4+6",
         answers: [
-            { text: "12", correct: true },
-            { text: "512", correct: false },
-            { text: "4", correct: false },
-            { text: "64", correct: false }
+            { text: "10", correct: true, id:"btn1" },
+            { text: "212", correct: false, id: "btn2"},
+            { text: "121", correct: false, id: "btn3"},
+            { text: "135", correct: false, id: "btn4"},
         ]
     }
 ]
 
 const questionElement = document.getElementById("question");
-const answerButtons = document.getElementById("btns");
-const nextbtnElement = document.getElementById("next-btn");
+const answerBtns = document.getElementById("answerBtns");
+const nextBtn = document.getElementById("nextBtn");
 
 let currentQuestionIndex = 0;
 let score = 0;
 
-function startQuiz(){
-    currentQuestionIndex=0;
-    score=0;
-    nextbtnElement.innerHTML="Continue";
+function startQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    nextBtn.innerHTML = "Continue";
     showQuestion();
 }
 
-function showQuestion(){
+function showQuestion() {
     resetState();
-    let currentQuestion=questions[currentQuestionIndex];
-    questionElement.innerHTML=currentQuestion.question;
+    let currentQuestion = questions[currentQuestionIndex];
+    questionElement.innerHTML = currentQuestion.question;
 
-    currentQuestion.answers.forEach(answer =>{
+    currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
-        button.innerHTML=answer.text;
+        button.innerHTML = answer.text;
         button.classList.add("btn");
-        answerButtons.appendChild(button);
+        button.id = answer.id; // Assign custom ID or generate default ID
+        answerBtns.appendChild(button);
     })
 }
 
-function resetState(){
-    nextButton.style.display="none";
-    while(answerButtons.firstChild){
-        answerButtons.removeChild(answerButtons.firstChild);
+function resetState() {
+    nextBtn.style.display="none";
+    while (answerBtns.firstChild) {
+        answerBtns.removeChild(answerBtns.firstChild);
     }
 }
 
