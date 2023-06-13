@@ -5,27 +5,27 @@ function generateQuestions(numQuestions) {
 
     for (let i = 0; i < numQuestions; i++) {
         let num1, num2, correctAddAnswer;
-        let answerSet = new Set(); // Use a Set to store unique answers
+        let answerSet = new Set();
 
         do {
             num1 = Math.floor(Math.random() * 10) - Math.floor(Math.random() * 20);
             num2 = Math.floor(Math.random() * 10) + Math.floor(Math.random() * 20);
             correctAddAnswer = num1 + num2;
 
-            answerSet.add(correctAddAnswer); // Add the correct answer to the set
+            answerSet.add(correctAddAnswer);
 
             while (answerSet.size < 4) {
                 const incorrectAnswer =
                     correctAddAnswer +
                     Math.floor(Math.random() * 11) -
                     Math.floor(Math.random() * 5);
-                answerSet.add(incorrectAnswer); // Add incorrect answers to the set
+                answerSet.add(incorrectAnswer);
             }
-        } while (answerSet.size !== 4); // Repeat until we have exactly 4 unique answers
+        } while (answerSet.size !== 4);
 
-        const answers = Array.from(answerSet); // Convert the set back to an array
-        const correctIndex = Math.floor(Math.random() * 4); // Randomly select the index for the correct answer
-        const shuffledAnswers = shuffleArrayWithIndex(answers, correctIndex); // Shuffle the answers with correct answer at the selected index
+        const answers = Array.from(answerSet);
+        const correctIndex = Math.floor(Math.random() * 4);
+        const shuffledAnswers = shuffleArrayWithIndex(answers, correctIndex); 
 
         const question = {
             question: `${num1} + ${num2}`,
@@ -48,7 +48,6 @@ function shuffleArrayWithIndex(array, correctIndex) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
     }
-    // Swap the correct answer to the selected index
     const correctAnswer = shuffledArray[0];
     shuffledArray[0] = shuffledArray[correctIndex];
     shuffledArray[correctIndex] = correctAnswer;
@@ -84,7 +83,6 @@ function showQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
     questionElement.innerHTML = currentQuestion.question;
 
-    // Randomize the order of the answers
     const shuffledAnswers = shuffleArray(currentQuestion.answers);
 
     shuffledAnswers.forEach(answer => {
