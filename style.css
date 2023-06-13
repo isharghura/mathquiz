@@ -1,15 +1,4 @@
-@media only screen and (max-width: 768px) {   
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Cabin', sans-serif;
-        box-sizing: border-box;
-    }
-    
-    body {
-        background-color: rgb(245, 245, 245);
-    }
-
+@media only screen and (max-width: 768px) {
     .app {
         background-color: rgb(245, 245, 245);
         width: 100%;
@@ -17,11 +6,11 @@
         border-radius: 10px;
         padding: 30px;
     }
-    
+
     .quiz {
         padding: 20px 0;
     }
-    
+
     .quiz h2 {
         font-size: 30px;
         color: black;
@@ -29,12 +18,19 @@
         margin: 5px;
     }
 
-    #answerBtns{
+    #question{
+        font-size: 100px;
+        text-align: center;
+        margin-top: -50px;
+        margin-bottom: 50px;
+    }
+
+    #answerBtns {
         display: grid;
     }
-    
+
     #answerBtns button {
-        font-size: 60px;
+        font-size: 100px;
         border: none;
         color: black;
         font-weight: 900;
@@ -44,30 +40,14 @@
         transition: all 0.3s;
         height: 160px;
     }
-    
+
     #answerBtns button:hover {
         opacity: 1;
         transform: scale(1.04);
         z-index: 5;
     }
-    
-    #btn1 {
-        background-color: rgb(255, 72, 72);
-    }
-    
-    #btn2 {
-        background-color: rgb(72, 197, 255);
-    }
-    
-    #btn3 {
-        background-color: rgb(105, 255, 118);
-    }
-    
-    #btn4 {
-        background-color: rgb(247, 247, 36);
-    }
-    
-    #nextBtn{
+
+    #nextBtn {
         display: none;
         margin: auto;
         opacity: 0.8;
@@ -80,8 +60,8 @@
         background-color: white;
         transition: all 0.5s;
     }
-    
-    #nextBtn:hover{
+
+    #nextBtn:hover {
         opacity: 1;
         transform: scale(1.04);
         background-color: black;
@@ -91,7 +71,77 @@
 
 
 @media only screen and (min-width: 768px) {
-    
+
+    .app {
+        background-color: rgb(245, 245, 245);
+        width: 100%;
+        margin: 50px 0;
+        border-radius: 10px;
+        padding: 30px;
+    }
+
+    .quiz {
+        padding: 20px 0;
+    }
+
+    #question{
+        font-size: 100px;
+        text-align: center;
+        margin-top: -50px;
+        margin-bottom: 50px;
+    }
+
+    #answerBtns {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-row: auto auto;
+    }
+
+    #answerBtns button {
+        font-size: 100px;
+        border: none;
+        color: black;
+        font-weight: 900;
+        text-align: center;
+        cursor: pointer;
+        opacity: 0.75;
+        transition: all 0.3s;
+        width: 100%;
+        height: 320px;
+    }
+
+    #answerBtns button:hover:not([disabled]) {
+        opacity: 1;
+        transform: scale(1.04);
+        z-index: 5;
+    }
+
+    #answerBtns button:disabled{
+        cursor: auto;
+    }
+
+    #nextBtn {
+        display: none;
+        margin: auto;
+        opacity: 0.8;
+        font-size: 25px;
+        margin-top: 70px;
+        width: 50%;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+        background-color: white;
+        transition: all 0.5s;
+    }
+
+    #nextBtn:hover {
+        opacity: 1;
+        transform: scale(1.01);
+        background-color: black;
+        color: white;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -101,50 +151,6 @@
 
 body {
     background-color: rgb(245, 245, 245);
-}
-
-.app {
-    background-color: rgb(245, 245, 245);
-    width: 100%;
-    margin: 50px 0;
-    border-radius: 10px;
-    padding: 30px;
-}
-
-.quiz {
-    padding: 20px 0;
-}
-
-.quiz h2 {
-    font-size: 30px;
-    color: black;
-    font-weight: 600;
-    margin: 5px;
-}
-
-#answerBtns{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-row: auto auto;
-}
-
-#answerBtns button {
-    font-size: 60px;
-    border: none;
-    color: black;
-    font-weight: 900;
-    text-align: center;
-    cursor: pointer;
-    opacity: 0.75;
-    transition: all 0.3s;
-    width: 100%;
-    height: 320px;
-}
-
-#answerBtns button:hover {
-    opacity: 1;
-    transform: scale(1.04);
-    z-index: 5;
 }
 
 #btn1 {
@@ -163,24 +169,10 @@ body {
     background-color: rgb(247, 247, 36);
 }
 
-#nextBtn{
-    display: none;
-    margin: auto;
-    opacity: 0.8;
-    font-size: 25px;
-    margin-top: 70px;
-    width: 50%;
-    height: 40px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    transition: all 0.5s;
+.correct{
+    background: rgb(0, 255, 0) !important;
 }
 
-#nextBtn:hover{
-    opacity: 1;
-    transform: scale(1.01);
-    background-color: black;
-    color: white;
-}
+.incorrect{
+    background: red !important;
 }
