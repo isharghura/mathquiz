@@ -58,7 +58,7 @@ function shuffleArray(array) {
     return array;
 }
 
-const questions = generateQuestions(numQuestions);
+let questions = generateQuestions(numQuestions);
 
 const questionElement = document.getElementById("question");
 const answerBtns = document.getElementById("answerBtns");
@@ -71,6 +71,9 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextBtn.innerHTML = "Continue";
+
+    questions = generateQuestions(numQuestions);
+
     showQuestion();
 }
 function showQuestion() {
