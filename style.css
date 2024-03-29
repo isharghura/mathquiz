@@ -44,7 +44,7 @@
         opacity: 0.8;
         font-size: 25px;
         width: 100%;
-        height: 60px;
+        height: 100%;
         border: none;
         cursor: pointer;
         background-color: white;
@@ -68,7 +68,7 @@
     .app {
         background-color: rgb(245, 245, 245);
         width: 100%;
-        margin: 50px 0;
+        /* margin: 50px 0; */
         border-radius: 10px;
         padding: 30px;
     }
@@ -100,7 +100,7 @@
         opacity: 0.75;
         transition: all 0.3s;
         width: 100%;
-        height: 320px;
+        height: 100%;
     }
 
     #answerBtns button:hover:not([disabled]) {
@@ -144,7 +144,7 @@
 
 body {
     background-color: rgb(245, 245, 245);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #btn1 {
